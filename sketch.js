@@ -11,6 +11,10 @@ function random(min, max) {
 
 
 function getDream(dream) {
+  const canvas = document.querySelector(".game-canvas");
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
   if (dream === 1) {
     const goodDream = new Good({
       element: document.querySelector(".game-container")

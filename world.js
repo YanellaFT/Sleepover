@@ -12,6 +12,8 @@ class World {
 
   startGameLoop() {
     const step = () => {
+        if (!this.running) return;
+
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         const speed = 4;
@@ -38,15 +40,17 @@ class World {
         }
         if (this.firefly.caught && !this.called) {
             this.dream = Math.floor(random(1, 4));
-            getDream(this.dream);
             this.called = true;
+            this.running = false;
+            getDream(this.dream);
         }
 
         requestAnimationFrame(() => {
             step();
         });
     }
-
+    
+    this.running = true;
     step();
   }
 
