@@ -27,5 +27,11 @@ class Firefly {
         if (this.position.x > 1056) this.position.x = 1056;
         if (this.position.x < 0) this.position.x = 0;
         if (this.position.y > 680) this.position.y = 680;
+
+        let distance = Math.sqrt((world.playerPos.x - this.position.x) ** 2 + (world.playerPos.y - this.position.y) ** 2);
+        if (distance < 60) {
+            this.caught = true;
+            console.log("caught");
+        }
     }
 }

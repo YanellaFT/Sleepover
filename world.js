@@ -28,11 +28,19 @@ class World {
         if (this.playerPos.x < 0) this.playerPos.x = 0;
         if (this.playerPos.y > 680) this.playerPos.y = 680;
         
-        this.firefly.update();
-
+    
         this.ctx.drawImage(this.background, 0, 0);
         this.ctx.drawImage(this.player, this.playerPos.x, this.playerPos.y);
-        this.ctx.drawImage(this.firefly.image, this.firefly.position.x, this.firefly.position.y);
+
+        if (!this.firefly.caught) {
+            this.firefly.update();
+            this.ctx.drawImage(this.firefly.image, this.firefly.position.x, this.firefly.position.y);
+        }
+        if (this.firefly.caught && !this.called) {
+            this.dream = Math.floor(random(1, 4));
+            getDream(this.dream);
+            this.called = true;
+        }
 
         requestAnimationFrame(() => {
             step();
