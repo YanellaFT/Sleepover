@@ -1,7 +1,8 @@
-function setup() {
-  createCanvas(400, 400);
-}
+(function() {
+  
+const world = new World({
+  element: document.querySelector(".game-container")
+});
+world.init();
 
-function draw() {
-  background(220);
-}
+})();
