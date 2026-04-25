@@ -8,6 +8,6 @@ class Bad {
     }
 
     init() {
-        this.background.src = "/assets/goodDreamBG.png";
+        this.background.src = "/assets/badDreamBG.png";
     }
 }
