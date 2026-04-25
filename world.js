@@ -46,7 +46,7 @@ class World {
             this.dream = Math.floor(random(1, 4));
             this.called = true;
             this.running = false;
-            getDream(1);
+            getDream(this.dream);
         }
 
         requestAnimationFrame(() => {
