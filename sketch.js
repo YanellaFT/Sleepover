@@ -12,24 +12,28 @@ function random(min, max) {
 
 function getDream(dream) {
   if (dream === 1) {
-    goodDream();
+    const goodDream = new Good({
+      element: document.querySelector(".game-container")
+    });
+    goodDream.init();
+    console.log("good dream");
   } else if (dream === 2) {
-    badDream();
+    console.log("bad dream");
   } else if (dream === 3) {
-    jumpscare();
+    console.log("jumpscare");
   } else {
     console.log("error");
   }
 }
 
-function goodDream() {
+// function goodDream() {
 
-}
+// }
 
-function badDream() {
+// function badDream() {
 
-}
+// }
 
-function jumpscare() {
+// function jumpscare() {
   
-}
+// }
