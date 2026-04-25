@@ -1,4 +1,3 @@
-export const FireFly2 = Firefly;
 class Firefly {
     constructor() {
         this.position = { x: random(0, 1200), y: random(0, 800) };
