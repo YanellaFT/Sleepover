@@ -93,7 +93,6 @@ class Good {
                 borderRadius: "12px",
                 background: "linear-gradient(135deg, #2e1065 0%, #4c1d95 100%)",
                 border: "2px solid #7c3aed",
-                // boxShadow: "0 0 12px rgba(124,58,237,0.5)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -111,7 +110,6 @@ class Good {
                 borderRadius: "12px",
                 background: "linear-gradient(135deg, #fdf4ff 0%, #e9d5ff 100%)",
                 border: "2px solid #c084fc",
-                // boxShadow:       "0 0 16px rgba(192,132,252,0.7)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -158,11 +156,9 @@ class Good {
             [cardA, cardB].forEach(c => {
                 Object.assign(c.inner.style, {
                     background: "none",
-                    // boxShadow:  "0 0 24px #86efac",
                 });
             
             c.inner.querySelector("div:last-child").style.background = "linear-gradient(135deg, #bbf7d0 0%, #86efac 100%)";
-            // c.inner.querySelector("div:last-child").style.boxShadow = "0 0 22px rgba(134,239,172,0.9)";
         });
 
         this.flipped = []
@@ -193,7 +189,6 @@ class Good {
             fontSize: "28px",
             marginTop: "22px",
             letterSpacing:"2px",
-            // textShadow: "0 0 20px #c084fc, 0 0 50px #7c3aed",
             animation: "fadeInUp 0.6s ease forwards",
             fontFamily: "cursive"
         });
