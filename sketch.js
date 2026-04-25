@@ -28,6 +28,10 @@ function getDream(dream) {
     badDream.init();
     console.log("bad dream");
   } else if (dream === 3) {
+    const jumpscareDream = new Jumpscare({
+      element: document.querySelector(".game-container")
+    });
+    jumpscareDream.init();
     console.log("jumpscare");
   } else {
     console.log("error");
