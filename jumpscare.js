@@ -8,13 +8,13 @@ class Jumpscare {
     }
 
     init() {
-        const num = Math.floor(random(1, 2));
+        const num = Math.floor(random(1, 3));
         if (num === 1) {
             this.background.src = "./assets/goodJumpscareBG.png";
         } else {
             this.background.src = "./assets/badJumpscareBG.png";
         }
-        
+
         this.background.onload = () => {
             this.ctx.drawImage(this.background, 0, 0);
         }
