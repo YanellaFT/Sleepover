@@ -20,7 +20,7 @@ class World {
         if (this.directionInput.direction === "left") this.playerPos.x -= speed;
         if (this.directionInput.direction === "right") this.playerPos.x += speed;
 
-        
+
         // console.log(this.playerPos); //top till 266
 
         if (this.playerPos.y < 266) this.playerPos.y = 288
@@ -28,8 +28,11 @@ class World {
         if (this.playerPos.x < 0) this.playerPos.x = 0;
         if (this.playerPos.y > 680) this.playerPos.y = 680;
         
+        this.firefly.update();
+
         this.ctx.drawImage(this.background, 0, 0);
         this.ctx.drawImage(this.player, this.playerPos.x, this.playerPos.y);
+        this.ctx.drawImage(this.firefly.image, this.firefly.position.x, this.firefly.position.y);
 
         requestAnimationFrame(() => {
             step();
@@ -42,6 +45,8 @@ class World {
   init() {
     this.directionInput = new Directions();
     this.directionInput.init();
+
+    this.firefly = new Firefly();
 
     this.background.src = "/assets/background.png";
     this.player.src = "/assets/player.png";
