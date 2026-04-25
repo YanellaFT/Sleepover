@@ -8,7 +8,7 @@ class Firefly {
         this.caught = false;
 
         this.image = new Image();
-        this.image.src = "/assets/firefly.png";
+        this.image.src = "./assets/firefly.png";
     }
 
     update() {

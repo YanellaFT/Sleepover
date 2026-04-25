@@ -60,8 +60,8 @@ class World {
 
     this.firefly = new Firefly();
 
-    this.background.src = "/assets/background.png";
-    this.player.src = "/assets/player.png";
+    this.background.src = "./assets/background.png";
+    this.player.src = "./assets/player.png";
 
     this.player.onload = () => {
       this.startGameLoop();
