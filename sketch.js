@@ -18,6 +18,10 @@ function getDream(dream) {
     goodDream.init();
     console.log("good dream");
   } else if (dream === 2) {
+    const badDream = new Bad({
+      element: document.querySelector(".game-container")
+    });
+    badDream.init();
     console.log("bad dream");
   } else if (dream === 3) {
     console.log("jumpscare");
