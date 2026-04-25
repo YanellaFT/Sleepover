@@ -37,15 +37,3 @@ function getDream(dream) {
     console.log("error");
   }
 }
-
-// function goodDream() {
-
-// }
-
-// function badDream() {
-
-// }
-
-// function jumpscare() {
-  
-// }

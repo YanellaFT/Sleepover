@@ -8,7 +8,7 @@ class Jumpscare {
     }
 
     init() {
-        this.background.src = "/assets/goodJumpscareBG.png";
+        this.background.src = "./assets/goodJumpscareBG.png";
         this.background.onload = () => {
             this.ctx.drawImage(this.background, 0, 0);
         }
