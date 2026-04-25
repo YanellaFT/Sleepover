@@ -1,4 +1,4 @@
-const world = new World({
+var world = new World({
   element: document.querySelector(".game-container")
 });
 world.init();
@@ -21,7 +21,7 @@ function getDream(dream) {
     });
     goodDream.init();
     console.log("good dream");
-    
+
   } else if (dream === 2) {
     const badDream = new Bad({
       element: document.querySelector(".game-container")
