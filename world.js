@@ -3,7 +3,7 @@ class World {
     this.element = config.element;
     this.canvas = this.element.querySelector(".game-canvas");
     this.ctx = this.canvas.getContext("2d");
-
+    
     this.background = new Image();
     this.player = new Image();
     this.playerPos = { x: 700, y: 350 };
@@ -21,17 +21,21 @@ class World {
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        const speed = 4;
+        const speed = 4;zz
         if (this.directionInput.direction === "up") this.playerPos.y -= speed;
         if (this.directionInput.direction === "down") this.playerPos.y += speed;
         if (this.directionInput.direction === "left") this.playerPos.x -= speed;
         if (this.directionInput.direction === "right") this.playerPos.x += speed;
 
-        if (this.playerPos.y < 266) this.playerPos.y = 288;
+
+        // console.log(this.playerPos); //top till 266
+
+        if (this.playerPos.y < 266) this.playerPos.y = 288
         if (this.playerPos.x > 1056) this.playerPos.x = 1056;
         if (this.playerPos.x < 0) this.playerPos.x = 0;
         if (this.playerPos.y > 680) this.playerPos.y = 680;
-
+        
+    
         this.ctx.drawImage(this.background, 0, 0);
         this.ctx.drawImage(this.player, this.playerPos.x, this.playerPos.y);
 
@@ -41,9 +45,10 @@ class World {
             this.ctx.drawImage(firefly.image, firefly.position.x, firefly.position.y);
           }
         }
-
+        
         const allCaught = this.fireflies.every(f => f.caught);
         if (allCaught && !this.called) {
+            this.dream = Math.floor(random(1, 4));
             this.called = true;
             this.running = false;
             this.directionInput.destroy();
