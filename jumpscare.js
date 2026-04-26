@@ -11,10 +11,12 @@ class Jumpscare {
         this.xpos = 0;
         this.ypos = 0;
         this.animationId = null;
+        this.BadSound = new Audio('./assets/badJumpscareSound.mp3');
+        this.GoodSound = new Audio('./assets/goodJumpscareSound.mp3');
     }
 
     init() {
-        const num = Math.floor(random(1, 3));
+        const num = Math.floor(Math.random() * 2) + 1;
         if (num === 1) {
             this.background.src = "./assets/goodJumpscareBG.png";
             this.music = new Audio("./assets/goodJumpscareSound.mp3");
@@ -51,7 +53,7 @@ class Jumpscare {
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        world = new World({ element: this.element });
+        window.world = new World({ element: this.element });
         world.init();
     }
 }
