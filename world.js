@@ -56,7 +56,7 @@ class World {
                 this.music.currentTime = 0;
             }
             this.dream = Math.floor(random(1, 4));
-            getDream(2);
+            getDream(this.dream);
             return;
         }
 
@@ -73,7 +73,7 @@ class World {
 
     this.fireflies = [new Firefly(), new Firefly(), new Firefly()];
 
-    this.background.src = "./assets/background.png";
+    this.background.src = "./assets/improvedscene.png";
     this.player.src = "./assets/player.png";
 
     this.music = new Audio("./assets/audio/worldMusic.mp3");

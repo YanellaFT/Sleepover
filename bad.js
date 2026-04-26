@@ -67,7 +67,8 @@ class Bad {
             "./assets/brainrot/mondayleftmebrokenmeme.png",
             "./assets/brainrot/nichefruitmeme.png",
             "./assets/brainrot/rickrollmeme.png",
-            "./assets/brainrot/sonionmeme.jpg"
+            "./assets/brainrot/sonionmeme.jpg",
+            "./assets/brainrot/rockmeme.png"
         ];
 
         const spawn = () => {
@@ -76,7 +77,7 @@ class Bad {
             const img = document.createElement("img");
             img.src = brainrotFiles[Math.floor(Math.random() * brainrotFiles.length)];
 
-            const size = 80 + Math.random() * 100;
+            const size = 120 + Math.random() * 140;
             const x = Math.random() * (this.canvas.width - size);
             const y = Math.random() * (this.canvas.height - size);
 
