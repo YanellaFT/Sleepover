@@ -5,3 +5,5 @@ Use the arrow keys to catch fireflies. Be careful the dreams you will receive ca
 ![alt text](image-1.png)
 
 Made by Naya and Yanella during Sleepover!
+
+Play [here!](https://yanellaft.github.io/Sleepover/)
