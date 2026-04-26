@@ -34,15 +34,11 @@ class World {
         this.ctx.drawImage(this.background, 0, 0);
         this.ctx.drawImage(this.player, this.playerPos.x, this.playerPos.y);
 
-        for (const firefly of this.fireflies) {
-          if (!firefly.caught) {
-            firefly.update();
-            this.ctx.drawImage(firefly.image, firefly.position.x, firefly.position.y);
-          }
+        if (!this.firefly.caught) {
+            this.firefly.update();
+            this.ctx.drawImage(this.firefly.image, this.firefly.position.x, this.firefly.position.y);
         }
-
-        const allCaught = this.fireflies.every(f => f.caught);
-        if (allCaught && !this.called) {
+        if (this.firefly.caught && !this.called) {
             this.dream = Math.floor(random(1, 4));
             this.called = true;
             this.running = false;
@@ -62,7 +58,7 @@ class World {
     this.directionInput = new Directions();
     this.directionInput.init();
 
-    this.fireflies = [new Firefly(), new Firefly(), new Firefly()];
+    this.firefly = new Firefly();
 
     this.background.src = "./assets/background.png";
     this.player.src = "./assets/player.png";
@@ -72,3 +68,14 @@ class World {
     };
   }
 }
+
+
+//     returnToWorld() {
+//     if (this.overlay && this.overlay.parentNode) {
+//         this.overlay.parentNode.removeChild(this.overlay);
+//     }
+//     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+//     world = new World({ element: this.element });
+//     world.init();
+// }

@@ -1,4 +1,4 @@
-var world = new World({
+const world = new World({
   element: document.querySelector(".game-container")
 });
 world.init();
@@ -15,27 +15,24 @@ function getDream(dream) {
   const ctx = canvas.getContext("2d");
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  if (dream === 1) {
+ if (dream === 1) {
     const goodDream = new Good({
       element: document.querySelector(".game-container")
     });
     goodDream.init();
     console.log("good dream");
-
   } else if (dream === 2) {
     const badDream = new Bad({
       element: document.querySelector(".game-container")
     });
     badDream.init();
     console.log("bad dream");
-
   } else if (dream === 3) {
     const jumpscareDream = new Jumpscare({
       element: document.querySelector(".game-container")
     });
     jumpscareDream.init();
     console.log("jumpscare");
-
   } else {
     console.log("error");
   }
