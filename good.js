@@ -6,17 +6,20 @@ class Good {
         
         this.background = new Image();
 
-        this.cards = []
-        this.flipped = []
-        this.matched = []
+        this.cards = [];
+        this.flipped = [];
+        this.matched = [];
         this.lockBoard = false;
         this.overlay = null;
+        this.music = new Audio("./assets/audio/goodDreamMusic.mp3");
+        this.music.loop = true;
     }
 
     init() {
         this.background.src = "./assets/goodDreamBG.png";
         this.background.onload = () => {
             this.ctx.drawImage(this.background, 0, 0);
+            this.music.play().catch(() => {});
             setTimeout(() => this.startMemoryGame(), 600);
         };
     }
@@ -56,9 +59,9 @@ class Good {
             [deck[i], deck[j]] = [deck[j], deck[i]];
         }
 
-        this.cards = []
-        this.matched = []
-        this.flipped = []
+        this.cards = [];
+        this.matched = [];
+        this.flipped = [];
 
         deck.forEach((sym, idx) => {
             const card = document.createElement("div");
@@ -154,23 +157,19 @@ class Good {
         if (cardA.sym === cardB.sym) {
             this.matched.push(a, b);
             [cardA, cardB].forEach(c => {
-                Object.assign(c.inner.style, {
-                    background: "none",
-                });
-            
-            c.inner.querySelector("div:last-child").style.background = "linear-gradient(135deg, #bbf7d0 0%, #86efac 100%)";
-        });
+                Object.assign(c.inner.style, { background: "none" });
+                c.inner.querySelector("div:last-child").style.background = "linear-gradient(135deg, #bbf7d0 0%, #86efac 100%)";
+            });
 
-        this.flipped = []
-        this.lockBoard = false;
+            this.flipped = [];
+            this.lockBoard = false;
 
-        if (this.matched.length === this.cards.length) {
-            setTimeout(() => this.onWin(), 700);
-
-        }
-    } else {
-        setTimeout(() => {
-            [cardA, cardB].forEach(c => {
+            if (this.matched.length === this.cards.length) {
+                setTimeout(() => this.onWin(), 700);
+            }
+        } else {
+            setTimeout(() => {
+                [cardA, cardB].forEach(c => {
                     c.inner.style.transform = "";
                     c.faceUp = false;
                 });
@@ -188,7 +187,7 @@ class Good {
             color: "#7c3aed",
             fontSize: "28px",
             marginTop: "22px",
-            letterSpacing:"2px",
+            letterSpacing: "2px",
             animation: "fadeInUp 0.6s ease forwards",
             fontFamily: "cursive"
         });
@@ -210,6 +209,9 @@ class Good {
     }
 
     returnToWorld() {
+        this.music.pause();
+        this.music.currentTime = 0;
+
         if (this.overlay && this.overlay.parentNode) {
             this.overlay.parentNode.removeChild(this.overlay);
         }

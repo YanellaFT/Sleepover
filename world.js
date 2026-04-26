@@ -21,21 +21,17 @@ class World {
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        const speed = 4;zz
+        const speed = 4;
         if (this.directionInput.direction === "up") this.playerPos.y -= speed;
         if (this.directionInput.direction === "down") this.playerPos.y += speed;
         if (this.directionInput.direction === "left") this.playerPos.x -= speed;
         if (this.directionInput.direction === "right") this.playerPos.x += speed;
 
-
-        // console.log(this.playerPos); //top till 266
-
-        if (this.playerPos.y < 266) this.playerPos.y = 288
+        if (this.playerPos.y < 266) this.playerPos.y = 288;
         if (this.playerPos.x > 1056) this.playerPos.x = 1056;
         if (this.playerPos.x < 0) this.playerPos.x = 0;
         if (this.playerPos.y > 680) this.playerPos.y = 680;
-        
-    
+
         this.ctx.drawImage(this.background, 0, 0);
         this.ctx.drawImage(this.player, this.playerPos.x, this.playerPos.y);
 
@@ -45,10 +41,9 @@ class World {
             this.ctx.drawImage(firefly.image, firefly.position.x, firefly.position.y);
           }
         }
-        
+
         const allCaught = this.fireflies.every(f => f.caught);
         if (allCaught && !this.called) {
-            this.dream = Math.floor(random(1, 4));
             this.called = true;
             this.running = false;
             this.directionInput.destroy();
@@ -81,7 +76,7 @@ class World {
     this.background.src = "./assets/background.png";
     this.player.src = "./assets/player.png";
 
-    this.music = new Audio("./assets/worldMusic.mp3");
+    this.music = new Audio("./assets/audio/worldMusic.mp3");
     this.music.loop = true;
 
     this._tryPlay = () => {
