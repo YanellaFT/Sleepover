@@ -11,10 +11,8 @@ class Jumpscare {
         this.xpos = 0;
         this.ypos = 0;
         this.animationId = null;
-        this.BadSound = new Audio("./assets/badJumpscareSound.mp3");
-        BadSound.volume = 0.5;
-        this.GoodSound = new Audio("./assets/goodJumpscareSound.mp3");
-        GoodSound.volume = 0.5;
+        this.BadSound = new Audio('./assets/badJumpscareSound.mp3');
+        this.GoodSound = new Audio('./assets/goodJumpscareSound.mp3');
     }
 
     init() {
