@@ -19,11 +19,6 @@ class Bad {
             this.ctx.drawImage(this.background, 0, 0);
             setTimeout(() => this.startClickGame(), 400);
         };
-        this.background.onerror = () => {
-            this.ctx.fillStyle = "#0a0010";
-            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-            setTimeout(() => this.startClickGame(), 400);
-        };
     }
  
     startClickGame() {
@@ -40,54 +35,26 @@ class Bad {
             overflow: "hidden",
         });
  
-        // Button
         const button = document.createElement("img");
         button.src = "./assets/button.png";
         Object.assign(button.style, {
             position: "absolute",
-            width: "400px",
-            height: "400px",
+            width: "800px",
+            height: "800px",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
             cursor: "pointer",
             zIndex: "12",
         });
- 
-        button.onerror = () => {
-            button.style.display = "none";
-            const fallback = document.createElement("button");
-            fallback.textContent = "CLICK ME";
-            Object.assign(fallback.style, {
-                position: "absolute",
-                width: "120px",
-                height: "120px",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                cursor: "pointer",
-                fontSize: "18px",
-                fontWeight: "900",
-                background: "darkred",
-                color: "white",
-                border: "3px solid red",
-                borderRadius: "12px",
-                zIndex: "12",
-            });
-            fallback.addEventListener("click", () => this.handleClick());
-            this.overlay.appendChild(fallback);
-        };
- 
+
         button.addEventListener("click", () => this.handleClick());
         this.overlay.appendChild(button);
- 
 
- 
         this.element.appendChild(this.overlay);
  
         this.startTime = performance.now();
     }
- 
  
     handleClick() {
         this.clickCount++;

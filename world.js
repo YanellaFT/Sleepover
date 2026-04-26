@@ -11,6 +11,8 @@ class World {
     this.music = null;
     this.running = false;
     this.called = false;
+    this.animationId = null;
+    this._tryPlay = null;
   }
 
   startGameLoop() {
@@ -45,19 +47,24 @@ class World {
             this.called = true;
             this.running = false;
             this.directionInput.destroy();
+            if (this._tryPlay) {
+                document.removeEventListener("keydown", this._tryPlay);
+                document.removeEventListener("click", this._tryPlay);
+            }
             if (this.music) {
                 this.music.pause();
                 this.music.currentTime = 0;
             }
             this.dream = Math.floor(random(1, 4));
             getDream(this.dream);
+            return;
         }
 
-        requestAnimationFrame(() => { step(); });
+        this.animationId = requestAnimationFrame(step);
     };
 
     this.running = true;
-    step();
+    this.animationId = requestAnimationFrame(step);
   }
 
   init() {
@@ -72,13 +79,14 @@ class World {
     this.music = new Audio("./assets/worldMusic.mp3");
     this.music.loop = true;
 
-    const tryPlay = () => {
+    this._tryPlay = () => {
         this.music.play().catch(() => {});
-        document.removeEventListener("keydown", tryPlay);
-        document.removeEventListener("click", tryPlay);
+        document.removeEventListener("keydown", this._tryPlay);
+        document.removeEventListener("click", this._tryPlay);
+        this._tryPlay = null;
     };
-    document.addEventListener("keydown", tryPlay);
-    document.addEventListener("click", tryPlay);
+    document.addEventListener("keydown", this._tryPlay);
+    document.addEventListener("click", this._tryPlay);
 
     this.player.onload = () => {
       this.startGameLoop();
