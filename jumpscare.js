@@ -17,13 +17,17 @@ class Jumpscare {
         const num = Math.floor(random(1, 3));
         if (num === 1) {
             this.background.src = "./assets/goodJumpscareBG.png";
+            this.music = new Audio("./assets/goodJumpscareSound.mp3");
         } else {
             this.background.src = "./assets/badJumpscareBG.png";
+            this.music = new Audio("./assets/badJumpscareSound.mp3");
         }
         
         this.background.onload = () => {
             this.drawScene();
+            this.music.play();
             setTimeout(() => {
+                this.music.pause();
                 this.returnToWorld();
             }, 3000);
         }

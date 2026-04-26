@@ -47,6 +47,7 @@ class World {
             this.called = true;
             this.running = false;
             getDream(this.dream);
+            this.music.pause();
         }
 
         requestAnimationFrame(() => {
@@ -62,12 +63,15 @@ class World {
     this.directionInput = new Directions();
     this.directionInput.init();
 
+    this.music = new Audio("./assets/worldMusic.mp3");
+
     this.fireflies = [new Firefly(), new Firefly(), new Firefly()];
 
     this.background.src = "./assets/background.png";
     this.player.src = "./assets/player.png";
 
     this.player.onload = () => {
+      this.music.play();
       this.startGameLoop();
     };
   }
