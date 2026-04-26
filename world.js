@@ -8,7 +8,6 @@ class World {
     this.player = new Image();
     this.playerPos = { x: 700, y: 350 };
     this.directionInput = null;
-    this.NormalSound = new Audio('./assets/SLEEP AND RELAXATION NATURE SOUNDS CRICKETS SUMMER NIGHT 4K 10 MINUTES.mp3');
   }
 
   startGameLoop() {
@@ -17,7 +16,7 @@ class World {
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        const speed = 4;
+        const speed = 4;zz
         if (this.directionInput.direction === "up") this.playerPos.y -= speed;
         if (this.directionInput.direction === "down") this.playerPos.y += speed;
         if (this.directionInput.direction === "left") this.playerPos.x -= speed;
@@ -67,7 +66,6 @@ class World {
 
     this.background.src = "./assets/background.png";
     this.player.src = "./assets/player.png";
-    this.NormalSound.play().catch(e => console.log("Audio blocked: click required"));
 
     this.player.onload = () => {
       this.startGameLoop();
