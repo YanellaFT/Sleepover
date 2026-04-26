@@ -11,14 +11,20 @@ class Jumpscare {
         this.xpos = 0;
         this.ypos = 0;
         this.animationId = null;
+        this.BadSound = new Audio("./assets/badJumpscareSound.mp3");
+        BadSound.volume = 0.5;
+        this.GoodSound = new Audio("./assets/goodJumpscareSound.mp3");
+        GoodSound.volume = 0.5;
     }
 
     init() {
-        const num = Math.floor(random(1, 3));
+        const num = Math.floor(random(1, 2));
         if (num === 1) {
             this.background.src = "./assets/goodJumpscareBG.png";
+            this.GoodSound.play().catch(e => console.log("Audio blocked: click required"));
         } else {
             this.background.src = "./assets/badJumpscareBG.png";
+            this.BadSound.play().catch(e => console.log("Audio blocked: click required"));
         }
         
         this.background.onload = () => {
