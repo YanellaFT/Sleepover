@@ -16,11 +16,11 @@ class Jumpscare {
     }
 
     init() {
-        const num = Math.floor(random(1, 2));
+        const num = Math.floor(Math.random() * 2) + 1;
         if (num === 1) {
             this.background.src = "./assets/goodJumpscareBG.png";
             this.GoodSound.play().catch(e => console.log("Audio blocked: click required"));
-        } else {
+        } else if (num === 2) {
             this.background.src = "./assets/badJumpscareBG.png";
             this.BadSound.play().catch(e => console.log("Audio blocked: click required"));
         }
@@ -51,7 +51,7 @@ class Jumpscare {
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        world = new World({ element: this.element });
+        window.world = new World({ element: this.element });
         world.init();
     }
 }
