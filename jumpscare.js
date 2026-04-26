@@ -14,44 +14,40 @@ class Jumpscare {
     }
 
     init() {
-        const num = Math.floor(random(1, 2));
+        const num = Math.floor(random(1, 3));
         if (num === 1) {
             this.background.src = "./assets/goodJumpscareBG.png";
         } else {
             this.background.src = "./assets/badJumpscareBG.png";
         }
         
-        this.night.src = "./assets/night.png";
-        this.day.src = "./assets/day.png";
-        
         this.background.onload = () => {
-            this.startAnimation();
+            this.drawScene();
+            setTimeout(() => {
+                this.returnToWorld();
+            }, 3000);
         }
-    }
-
-    startAnimation() {
-        this.drawScene();
     }
 
     drawScene() {
-        // Draw background first
-        this.ctx.drawImage(this.background, 0, 0);
-        
-        // Draw animated layers on top
-        this.ctx.drawImage(this.night, this.xpos, 0);
-        this.ctx.drawImage(this.day, 400, this.ypos);
-        
-        this.xpos += 1;
-        this.ypos += 1;
-        
-        if (this.xpos > this.canvas.width) {
-            this.xpos = -400;
-        }
-        if (this.ypos > this.canvas.height) {
-            this.ypos = -400;
-        }
+        const shakeX = (Math.random() - 0.5) * 16;
+        const shakeY = (Math.random() - 0.5) * 16;
+
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.ctx.drawImage(this.background, shakeX, shakeY, this.canvas.width, this.canvas.height);
         
         this.animationId = requestAnimationFrame(() => this.drawScene());
+
+    }
+
+    returnToWorld() {
+        cancelAnimationFrame(this.animationId);
+        this.animationId = null;
+
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        world = new World({ element: this.element });
+        world.init();
     }
 }
-

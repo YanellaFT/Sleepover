@@ -46,6 +46,7 @@ class Bad {
         const button = document.createElement("button");
         this.button.Image = "./assets/button.png";
         Object.assign(this.button.style, {
+            position: "absolute",
             width: "120px",
             height: "120px",
             cursor: "pointer",
