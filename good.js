@@ -16,7 +16,7 @@ class Good {
     }
 
     init() {
-        this.background.src = "/assets/dreamgoodBG.png";
+        this.background.src = "./assets/dreamgoodBG.png";
         this.background.onload = () => {
             this.ctx.drawImage(this.background, 0, 0);
             this.music.play().catch(() => {});
