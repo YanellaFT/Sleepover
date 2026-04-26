@@ -3,11 +3,14 @@ class World {
     this.element = config.element;
     this.canvas = this.element.querySelector(".game-canvas");
     this.ctx = this.canvas.getContext("2d");
-    
+
     this.background = new Image();
     this.player = new Image();
     this.playerPos = { x: 700, y: 350 };
     this.directionInput = null;
+    this.music = null;
+    this.running = false;
+    this.called = false;
   }
 
   startGameLoop() {
@@ -22,15 +25,11 @@ class World {
         if (this.directionInput.direction === "left") this.playerPos.x -= speed;
         if (this.directionInput.direction === "right") this.playerPos.x += speed;
 
-
-        // console.log(this.playerPos); //top till 266
-
-        if (this.playerPos.y < 266) this.playerPos.y = 288
+        if (this.playerPos.y < 266) this.playerPos.y = 288;
         if (this.playerPos.x > 1056) this.playerPos.x = 1056;
         if (this.playerPos.x < 0) this.playerPos.x = 0;
         if (this.playerPos.y > 680) this.playerPos.y = 680;
-        
-    
+
         this.ctx.drawImage(this.background, 0, 0);
         this.ctx.drawImage(this.player, this.playerPos.x, this.playerPos.y);
 
@@ -40,21 +39,23 @@ class World {
             this.ctx.drawImage(firefly.image, firefly.position.x, firefly.position.y);
           }
         }
-        
+
         const allCaught = this.fireflies.every(f => f.caught);
         if (allCaught && !this.called) {
-            this.dream = Math.floor(random(1, 4));
             this.called = true;
             this.running = false;
+            this.directionInput.destroy();
+            if (this.music) {
+                this.music.pause();
+                this.music.currentTime = 0;
+            }
+            this.dream = Math.floor(random(1, 4));
             getDream(this.dream);
-            this.music.pause();
         }
 
-        requestAnimationFrame(() => {
-            step();
-        });
-    }
-    
+        requestAnimationFrame(() => { step(); });
+    };
+
     this.running = true;
     step();
   }
@@ -63,15 +64,23 @@ class World {
     this.directionInput = new Directions();
     this.directionInput.init();
 
-    this.music = new Audio("./assets/worldMusic.mp3");
-
     this.fireflies = [new Firefly(), new Firefly(), new Firefly()];
 
     this.background.src = "./assets/background.png";
     this.player.src = "./assets/player.png";
 
+    this.music = new Audio("./assets/worldMusic.mp3");
+    this.music.loop = true;
+
+    const tryPlay = () => {
+        this.music.play().catch(() => {});
+        document.removeEventListener("keydown", tryPlay);
+        document.removeEventListener("click", tryPlay);
+    };
+    document.addEventListener("keydown", tryPlay);
+    document.addEventListener("click", tryPlay);
+
     this.player.onload = () => {
-      this.music.play();
       this.startGameLoop();
     };
   }
