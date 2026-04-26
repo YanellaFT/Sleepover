@@ -210,12 +210,12 @@ class Good {
     }
 
     returnToWorld() {
-    if (this.overlay && this.overlay.parentNode) {
-        this.overlay.parentNode.removeChild(this.overlay);
-    }
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        if (this.overlay && this.overlay.parentNode) {
+            this.overlay.parentNode.removeChild(this.overlay);
+        }
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    world = new World({ element: this.element });
-    world.init();
-}
+        world = new World({ element: this.element });
+        world.init();
+    }
 }
