@@ -8,6 +8,7 @@ class World {
     this.player = new Image();
     this.playerPos = { x: 700, y: 350 };
     this.directionInput = null;
+    this.NormalSound = new Audio('./assets/SLEEP AND RELAXATION NATURE SOUNDS CRICKETS SUMMER NIGHT 4K 10 MINUTES.mp3');
   }
 
   startGameLoop() {
@@ -66,6 +67,7 @@ class World {
 
     this.background.src = "./assets/background.png";
     this.player.src = "./assets/player.png";
+    this.NormalSound.play().catch(e => console.log("Audio blocked: click required"));
 
     this.player.onload = () => {
       this.startGameLoop();
