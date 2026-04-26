@@ -38,7 +38,6 @@ class Bad {
             overflow: "hidden",
         });
  
-        // Button
         const button = document.createElement("img");
         button.src = "./assets/button.png";
         Object.assign(button.style, {
@@ -61,15 +60,14 @@ class Bad {
 
     spawnbrainrot() {
         const brainrotFiles = [
-            "./assets/brainrot/sonionbrainrot.jpg",
-            "./assets/brainrot/rickrollbrainrot.png",
-            "./assets/brainrot/nichefruitbrainrot.png",
-            "./assets/brainrot/mondayleftmebrokenbrainrot.png",
-            "./assets/brainrot/JoshHutchersonbrainrot.png",
-            "./assets/brainrot/highcortisolbrainrot.png",
-            "./assets/brainrot/cornballbrainrot.png",
-            "./assets/brainrot/absoluterockybrainrot.png",
-            "./assets/brainrot/67brainrot.png",
+            "./assets/brainrot/67meme.png",
+            "./assets/brainrot/cornballmeme.png",
+            "./assets/brainrot/highcortisolmeme.png",
+            "./assets/brainrot/JoshHutchersonmeme.png",
+            "./assets/brainrot/mondayleftmebrokenmeme.png",
+            "./assets/brainrot/nichefruitmeme.png",
+            "./assets/brainrot/rickrollmeme.png",
+            "./assets/brainrot/sonionmeme.jpg"
         ];
 
         const spawn = () => {
@@ -92,21 +90,17 @@ class Bad {
                 top: `${y}px`,
                 zIndex: "11",
                 pointerEvents: "none",
-                opacity: "1",
-                transition: "opacity 0.4s",
             });
 
             this.overlay.appendChild(img);
 
-            // Fade out and remove after a short time
             const lifetime = 600 + Math.random() * 1600;
             setTimeout(() => {
                 img.style.opacity = "0";
                 setTimeout(() => img.remove(), 400);
             }, lifetime);
 
-            // Spawn faster as clicks increase
-            const delay = Math.max(80, 500 - (this.clickCount / this.targetClicks) * 420);
+            const delay = Math.max(80, 500 - (this.clickCount / this.targetClicks) * 500);
             this.spawnInterval = setTimeout(spawn, delay);
         };
 
@@ -115,28 +109,49 @@ class Bad {
  
     handleClick() {
         this.clickCount++;
-        console.log("clicked:", this.clickCount);
+        // console.log("clicked:", this.clickCount);
  
         if (this.clickCount >= this.targetClicks) {
             this.onWin();
         }
     }
+
+    drawScene() {
+        const shakeX = (Math.random() - 0.5) * 16;
+        const shakeY = (Math.random() - 0.5) * 16;
+
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.drawImage(this.background, shakeX, shakeY, this.canvas.width, this.canvas.height);
+
+        this.animationId = requestAnimationFrame(() => this.drawScene());
+    }
  
     onWin() {
         clearTimeout(this.spawnInterval);
-        setTimeout(() => this.returnToWorld(), 2200);
+        this.spawnInterval = null;
+ 
+        if (this.overlay && this.overlay.parentNode) {
+            this.overlay.parentNode.removeChild(this.overlay);
+            this.overlay = null;
+        }
+ 
+        this.drawScene();
+ 
+        setTimeout(() => {
+            cancelAnimationFrame(this.animationId);
+            this.animationId = null;
+            this.returnToWorld();
+        }, 2200);
     }
  
     returnToWorld() {
+        cancelAnimationFrame(this.animationId);
+        this.animationId = null;
+ 
         this.music.pause();
         this.music.currentTime = 0;
-        
-        clearTimeout(this.spawnInterval);
-        if (this.overlay && this.overlay.parentNode) {
-            this.overlay.parentNode.removeChild(this.overlay);
-        }
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
  
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         world = new World({ element: this.element });
         world.init();
     }
