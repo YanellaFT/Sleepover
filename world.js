@@ -56,7 +56,7 @@ class World {
                 this.music.currentTime = 0;
             }
             this.dream = Math.floor(random(1, 4));
-            getDream(this.dream);
+            getDream(2);
             return;
         }
 
