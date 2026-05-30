@@ -7,7 +7,7 @@ class Bad {
         this.background = new Image();
         this.overlay = null;
         this.clickCount = 0;
-        this.targetClicks = 50;
+        this.targetClicks = 25;
         this.animFrame = null;
         this.spawnInterval = null;
 
